@@ -9,17 +9,20 @@ export default defineConfig({
         strictPort: true,
         port: 5173,
         hmr: {
-            host: '172.24.207.234',
+            host: process.env.VITE_DEV_SERVER_HOST || 'localhost',
             protocol: 'ws',
             port: 5173,
         },
+        // watch: {
+        //     usePolling: true,
+        // }
     },
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
-        tailwindcss(),
+        tailwindcss()
     ],
     build: {
         manifest: true,
